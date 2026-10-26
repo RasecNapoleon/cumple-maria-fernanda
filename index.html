@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, María Fernanda!</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #2e1021 0%, #110714 100%);
+            overflow-x: hidden;
+        }
+        .font-cursive { font-family: 'Great Vibes', cursive; }
+        .font-serif-custom { font-family: 'Playfair Display', serif; }
+        
+        /* Animación suave de flotación */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .petal {
+            position: absolute;
+            background: pink;
+            border-radius: 150% 0 150% 0;
+            animation: float linear infinite;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-pink-100 flex flex-col items-center justify-center p-4 relative">
+
+    <!-- Pétalos y corazones flotando en el fondo -->
+    <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- Contenedor Principal -->
+    <main class="relative z-10 max-w-xl w-full glass-card rounded-3xl p-6 sm:p-10 text-center my-8">
+        
+        <!-- Detalle de flor decorativa superior -->
+        <div class="mb-4 text-4xl animate-bounce">🌸✨🌷</div>
+
+        <!-- Título principal -->
+        <h2 class="text-pink-300 uppercase tracking-widest text-xs sm:text-sm font-medium mb-2">Un detalle especial para ti</h2>
+        <h1 class="text-4xl sm:text-6xl font-cursive text-pink-200 mb-4 drop-shadow-[0_2px_10px_rgba(255,182,193,0.5)]">
+            ¡Feliz Cumpleaños, María Fernanda!
+        </h1>
+
+        <!-- Dedicatoria principal -->
+        <p class="text-lg sm:text-xl font-serif-custom italic text-pink-100 mb-6 leading-relaxed">
+            "Que la pases muy bonito, que cada sueño se acerque un poco más a ti y que este nuevo año de vida te regale sonrisas inolvidables y momentos llenos de magia."
+        </p>
+
+        <!-- Bloque de floro / Frases románticas y bonitas -->
+        <div class="bg-black/30 rounded-2xl p-4 sm:p-6 mb-6 border border-pink-500/20 text-sm sm:text-base text-pink-200/90 space-y-3">
+            <p>🌟 Hay personas que iluminan los días con solo una sonrisa, y tú eres una de ellas.</p>
+            <p>🌹 Que la vida te sorprenda hoy y siempre con cosas hermosas, porque alguien tan especial merece lo mejor del mundo.</p>
+        </div>
+
+        <!-- Botón de Sorpresa -->
+        <button onclick="lanzarSorpresa()" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 transition-all duration-300 transform hover:scale-105 active:scale-95 mb-4">
+            🎁 Haz clic para una sorpresa
+        </button>
+
+        <!-- Carta Secreta (Oculta al inicio) -->
+        <div id="cartaSecreta" class="hidden mt-6 p-6 bg-pink-950/40 border border-pink-400/30 rounded-2xl text-left animate-fade-in">
+            <h3 class="text-pink-300 font-cursive text-3xl mb-2 text-center">De parte de alguien que te aprecia mucho...</h3>
+            <p class="text-sm sm:text-base text-pink-100/90 leading-relaxed mb-4">
+                María Fernanda, espero de todo corazón que pases un día extraordinario rodeada de la gente que te quiere. Que este año esté lleno de grandes logros, salud y muchísima felicidad.
+            </p>
+            <p class="text-right font-cursive text-2xl text-pink-300">Con mucho afecto,<br><strong>César Ramos</strong></p>
+        </div>
+
+        <!-- Firma sutil -->
+        <div class="mt-6 pt-4 border-t border-pink-500/20 text-xs text-pink-300/70 tracking-wider">
+            Hecho con mucho cariño por César Ramos
+        </div>
+    </main>
+
+    <!-- Script de Animaciones y Confeti -->
+    <script>
+        // Generador de pétalos flotantes
+        function crearPetalo() {
+            const particles = document.getElementById('particles');
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const size = Math.random() * 12 + 8;
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 1.4}px`;
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.top = `105vh`;
+            
+            const duration = Math.random() * 6 + 4;
+            petal.style.animationDuration = `${duration}s`;
+            
+            // Colores variados de pétalos (rosas, rojos claros, blancos)
+            const colores = ['rgba(255, 182, 193, 0.6)', 'rgba(255, 105, 180, 0.5)', 'rgba(255, 228, 225, 0.7)'];
+            petal.style.background = colores[Math.floor(Math.random() * colores.length)];
+
+            particles.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(crearPetalo, 300);
+
+        // Función del botón sorpresa con confeti
+        function lanzarSorpresa() {
+            // Mostrar carta
+            const carta = document.getElementById('cartaSecreta');
+            carta.classList.remove('hidden');
+            carta.scrollIntoView({ behavior: 'smooth' });
+
+            // Lanzar confeti festivo
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff69b4', '#ff1493', '#ffb6c1', '#ffffff']
+            });
+        }
+    </script>
+</body>
+</html>
